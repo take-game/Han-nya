@@ -727,6 +727,7 @@ void draw() {
   }else if(gseq == 5){
     GameStart_TextDisp();
   }
+  smooth();
 }
 void GameInit(){
   gseq = 0;
@@ -795,47 +796,35 @@ void MapInit(){
   map2[0][4] =1;
 }
 void GamePlay(){
+  PlayTime= floor((millis()-PlayTimeS)/1000); // /s
   if(KeyPress == 0){
   MapChange();
   MapDisp();
   PlayerDisp();
   PlayerMove();
-  if(EnemyMapChangeTime < millis()-ELagTime){
-    EnemyDisp();
-    EnemyMove();
-    EnemyHitCheck();
-  }
   ItemDisp();
   SystemDisp();
   HintDisp();
   GameClearTerms();
-  smooth();
-  }else if(KeyPress == 1){
+  if(EnemyMapChangeTime < millis()-ELagTime){
+      EnemyDisp();
+      EnemyMove();
+      EnemyHitCheck();
+    }
+  }else {
   MapDisp();
   PlayerDisp();
   EnemyDisp();
-  Item_TextDisp();
-  ItemDisp();
-  SystemDisp();
-  HintDisp();
-  }else if(KeyPress == 2){
-  MapDisp();
-  PlayerDisp();
-  EnemyDisp();
-  System_TextDisp();
-  ItemDisp();
-  SystemDisp();
-  HintDisp();
-  }else if(KeyPress == 3){
-  MapDisp();
-  PlayerDisp();
-  EnemyDisp();
-  Hint_TextDisp();
+  if(KeyPress == 1)
+    Item_TextDisp();
+  if(KeyPress == 2)
+    System_TextDisp();
+  if(KeyPress == 3)
+    Hint_TextDisp();
   ItemDisp();
   SystemDisp();
   HintDisp();
   }
-  PlayTime= floor((millis()-PlayTimeS)/1000); // /s
 }
 void GameTitle(){
   background(0);
