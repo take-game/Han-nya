@@ -1655,7 +1655,8 @@ void GameOverEffect(){
   if(GameOverEffect_w > 2*width)
     gseq = 2;
     
-  image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
+  fill(0);  
+  rect(GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
 }
 void GameStart_TextDisp(){
   textSize(30);
