@@ -1558,6 +1558,8 @@ void GameClearTerms(){
 void EnemyHitCheck(){
   if( EnemyExist == 0 && px == ex && py == ey){
     GameOverEffect();
+    ex = px;
+    ey = py;
   }
 }
 void Item_TextDisp(){
