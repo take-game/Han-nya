@@ -1568,7 +1568,7 @@ void GameClearTerms(){
 }
 void EnemyHitCheck(){
   if(EnemyExist == 0 && px == ex && py == ey){
-    gseq = 4;
+    gseq = 2;
   }
 }
 void Item_TextDisp(){
