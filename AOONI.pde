@@ -905,6 +905,20 @@ void GameClear(){
   PlayTimeDisp();
 }
 void mousePressed(){
+  /*if( gseq ==1 && KeyPress == 0){
+    if((mouseX/CHIP - px/CHIP) < 1){
+    }else if(px < mouseX/CHIP){
+      px++;
+    }else if(px > mouseX/CHIP){
+      px--;
+    }
+    if((mouseY/CHIP - py/CHIP) < 1){
+    }else if(py < mouseY/CHIP){
+      py++;
+    }else if(py > mouseY/CHIP){
+      py--;
+    }
+  }*/ //スマホでできるように開発
   if( gseq == 0 ){
     gseq = 5;
     LagTimePress=millis();
