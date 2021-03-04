@@ -1557,7 +1557,7 @@ void GameClearTerms(){
 }
 void EnemyHitCheck(){
   if( EnemyExist == 0 && px == ex && py == ey){
-    gseq = 4;
+    GameOverEffect();
   }
 }
 void Item_TextDisp(){
