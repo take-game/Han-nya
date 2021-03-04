@@ -835,6 +835,21 @@ void GameTitle(){
     text("Click to start",width/2-200,height/2-25);
   }
 }
+void GameOverEffect(){
+  background(255);
+  image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
+  if(GameOverEffect_x < width/2 && GameOverEffect == 0){
+    GameOverEffect_x+=2;   
+  }else{
+    GameOverEffect++;
+    GameOverEffect_h+=12;
+    GameOverEffect_w+=8;
+    GameOverEffect_x-=4;
+    GameOverEffect_y-=4;
+  }
+  if(GameOverEffect_w > 2 * width)
+    gseq = 2;
+}
 void GameOver(){
   background(#C10000);
   mcnt++;
@@ -1557,9 +1572,7 @@ void GameClearTerms(){
 }
 void EnemyHitCheck(){
   if( EnemyExist == 0 && px == ex && py == ey){
-    GameOverEffect();
-    ex = px;
-    ey = py;
+    gseq =4;
   }
 }
 void Item_TextDisp(){
@@ -1630,21 +1643,6 @@ void PlayTimeDisp(){
   textSize(30);
   fill(255,255,0);
   text("Clear Time :"+floor(PlayTime/60)+"分"+PlayTime%60+"秒",width/2-150,height/2+100);
-}
-void GameOverEffect(){
-  background(255);
-  image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
-  if(GameOverEffect_x < width/2 && GameOverEffect == 0){
-    GameOverEffect_x+=2;   
-  }else{
-    GameOverEffect++;
-    GameOverEffect_h+=12;
-    GameOverEffect_w+=8;
-    GameOverEffect_x-=4;
-    GameOverEffect_y-=4;
-  }
-  if(GameOverEffect_w > 2 * width)
-    gseq = 2;
 }
 void GameStart_TextDisp(){
   background(0);
