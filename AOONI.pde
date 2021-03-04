@@ -867,7 +867,7 @@ void GameTitle(){
   if((mcnt%60) < 40){
     textSize(50);
     fill(255,255,0);
-    text("Click to start",width/2-200,height/2-25);
+    text("Click to start",width/2-180,height/2-25);
   }
 }
 void GameOverEffect(){
