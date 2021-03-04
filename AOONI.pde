@@ -767,11 +767,11 @@ void GameInit(){
   Map27Change = 1;
   OutChange = 0;
   PlayTimeS = millis();
-  GameOverEffect_x=0;
-  GameOverEffect_y=6*CHIP;
-  GameOverEffect_w=CHIP;
+  GameOverEffect_x= 0;
+  GameOverEffect_y= 6 * CHIP;
+  GameOverEffect_w= CHIP;
   GameOverEffect_h = 2*CHIP;
-  GameOverEffect =0;
+  GameOverEffect = 0 ;
   HintCount = 3 ;
 }
 void MapInit(){
@@ -1567,8 +1567,8 @@ void GameClearTerms(){
   }
 }
 void EnemyHitCheck(){
-  if(EnemyExist == 0 && px == ex && py == ey){
-    gseq = 2;
+  if( EnemyExist == 0 && px == ex && py == ey){
+    gseq = 4;
   }
 }
 void Item_TextDisp(){
@@ -1642,9 +1642,8 @@ void PlayTimeDisp(){
 }
 void GameOverEffect(){
   background(255);
-  fill(#4D498B);
-  rect(GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h);
-  if(GameOverEffect_x < width/2 && GameOverEffect==0){
+  image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
+  if(GameOverEffect_x < width/2 && GameOverEffect == 0){
     GameOverEffect_x+=2;   
   }else{
     GameOverEffect++;
@@ -1653,9 +1652,8 @@ void GameOverEffect(){
     GameOverEffect_x-=4;
     GameOverEffect_y-=4;
   }
-  if(GameOverEffect_w > 2*width)
+  if(GameOverEffect_w > 2 * width)
     gseq = 2;
-  image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
 }
 void GameStart_TextDisp(){
   background(0);
