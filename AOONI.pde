@@ -1,4 +1,7 @@
-/* @pjs preload="aooni_kiritu.jpg"; */
+/* @pjs preload="hannya.png"; 
+   @pjs preload="yonce.png";
+   @pjs preload="ha.png";
+*/
 int[][] map ;
 int[][] map1 = {
 {2,2,2,2,2,2,2,2,1,13,13,1,2,2,2,2,2,2,2,2},
@@ -709,7 +712,9 @@ int Hint_x[] = new int [3];
 int Hint_y[] = new int [3];
 int gseq;
 int mcnt;
-PImage Aooni1;
+PImage hannya;
+PImage yonce;
+PImage ha;
 int KeyPress;
 int ItemCount;
 int Distance_x;
@@ -729,13 +734,20 @@ int LagTimePress;
 int HintCount;
 int BreakWall;
 int BreakWallMax = 15;
+int ew =70;
+int eh =94;
+int pw =30;
+int ph =48;
+float EnemyApperP;
 
 void setup() {
   size(600,600);
   PFont font = createFont("Monospaced.italic",50);
   textFont(font);
   GameInit();
-  Aooni1 =loadImage("aooni_kiritu.jpg");
+  hannya =loadImage("hannya.png");
+  yonce =loadImage("yonce.png");
+  ha =loadImage("ha.png");
 }
 
 void draw() {
@@ -748,21 +760,25 @@ void draw() {
   }else if(gseq == 3){
     GameClear();
   }else if(gseq == 4){
-    background(255);
-    image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
+    background(255); 
     if(GameOverEffect_x < width/2 && GameOverEffect == 0){
       GameOverEffect_x+=2;   
+      image(hannya,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h);
     }else{
+      background(#800E89);
+      image(ha,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h);
       GameOverEffect++;
-      GameOverEffect_h+=12;
-      GameOverEffect_w+=8;
-      GameOverEffect_x-=4;
-      GameOverEffect_y-=4;
+      GameOverEffect_w+=10;
+      GameOverEffect_h+=13;
+      GameOverEffect_x-=5;
+      GameOverEffect_y-=6;
     }
     if(GameOverEffect_w > 2 * width)
       gseq = 2;
   }else if(gseq == 5){
-    GameStart_TextDisp();
+    GameStart1_TextDisp();
+  }else if(gseq == 6){
+    GameStart2_TextDisp();
   }
   smooth();
 }
@@ -806,12 +822,13 @@ void GameInit(){
   OutChange = 0;
   PlayTimeS = millis();
   GameOverEffect_x= 0;
-  GameOverEffect_y= 6 * CHIP;
-  GameOverEffect_w= CHIP;
-  GameOverEffect_h = 2*CHIP;
+  GameOverEffect_y= 4 * CHIP;
+  GameOverEffect_w= 100;
+  GameOverEffect_h = 130;
   GameOverEffect = 0 ;
   HintCount = 3 ;
   BreakWall=0;
+  EnemyApperP=1.0;
 }
 void MapInit(){
   map1[19][9]=1;
@@ -881,7 +898,7 @@ void GameTitle(){
 }
 void GameOverEffect(){
   background(255);
-  image(Aooni1,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
+  image(hannya,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h); 
   if(GameOverEffect_x < width/2 && GameOverEffect == 0){
     GameOverEffect_x+=2;   
   }else{
@@ -920,6 +937,10 @@ void mousePressed(){
     LagTimePress=millis();
   }
   if( gseq == 5 && 300 < millis()-LagTimePress){
+    gseq = 6;
+    LagTimePress=millis();
+  }
+  if( gseq == 6 && 300 < millis()-LagTimePress){
     gseq = 1;
   }
   if( gseq == 2 ){
@@ -1456,7 +1477,7 @@ void getPosition(){
   EnemyMapChangeTime = 100*floor(sqrt(Distance_x + Distance_y)) + 500;
 }
 void EnemyApper(){
-  if(KeyPress == 0 && random(-1,1) > 0.8)
+  if(KeyPress == 0 && random(-1,1) > EnemyApperP)
     EnemyAppearCount+=1;
   if(EnemyAppearCount > 100){
     for (int i = 0; i < masu_y; i++) {
@@ -1505,7 +1526,6 @@ void MapDisp(){
       if(EnemyExist == 0 && map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 1) fill(255);
       if(map[i][k] == 1 && OutChange == 0) fill(#401F04);//map[y][x]
       if(EnemyExist == 1 && map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 0) fill(#154D15);
-      if(EnemyExist == 0 && map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 0) fill(255);
       if(map[i][k] == 4) fill(#19186C);
       if(map[i][k] == 5) fill(#503206);
         rect(k * CHIP, i * CHIP, CHIP, CHIP);
@@ -1513,8 +1533,7 @@ void MapDisp(){
     }
 }
 void PlayerDisp(){
-  fill(0);
-  rect(px * CHIP,py * CHIP,CHIP,CHIP);
+  image(yonce,px * CHIP - pw/3,py * CHIP - ph/5,pw,ph);
 }
 void PlayerMove(){
   if(80<millis()-LagTime){
@@ -1543,9 +1562,8 @@ void PlayerMove(){
 }
 void EnemyDisp(){
   if(EnemyExist == 0 ){
-    fill(#7A33F0);
-    image(Aooni1,ex * CHIP,ey * CHIP,CHIP,2 * CHIP);
-  }else if(EnemyExist == 1 && OutChange == 1){
+    image(hannya,ex * CHIP - ew/2,ey * CHIP - eh/2,ew,eh);
+  }else if(EnemyExist == 1 && OutChange == 1 ){
     EnemyApper();
   }
 }
@@ -1614,18 +1632,21 @@ void ItemGet(){
       ItemCount-=1;
       KeyPress = 1;
       EnemySpeed -=20;
+      EnemyApperP = 0.75;
     }
   if(ItemExist[1] == 0 && px == Item_x[1] && py == Item_y[1] && map==map28 && KeyPress == 0){
       ItemExist[1] = 1;
       ItemCount-=1;
       KeyPress = 1;
       EnemySpeed -=20;
+      EnemyApperP = 0.7;
     }
   if(ItemExist[2] == 0 && px == Item_x[2] && py == Item_y[2] && map==map29 && KeyPress == 0){
       ItemExist[2] = 1;
       ItemCount-=1;
       KeyPress = 1;
       EnemySpeed -=20;
+      EnemyApperP = 0.0;
     }
 }
 void GameClearTerms(){
@@ -1708,11 +1729,17 @@ void PlayTimeDisp(){
   fill(255,255,0);
   text("Clear Time :"+floor(PlayTime/60)+"分"+PlayTime%60+"秒",width/2-150,height/2+100);
 }
-void GameStart_TextDisp(){
+void GameStart1_TextDisp(){
   background(0);
   textSize(30);
   fill(255,255,0);
-  text("”般若”が出るという屋敷があった...",30,height-60);
+  text("”般若”が出るという屋敷があった",30,height-60);
+}
+void GameStart2_TextDisp(){
+  background(0);
+  textSize(30);
+  fill(255,255,0);
+  text("その館に訪れたヨンス...",30,height-60);
 }
 void HintDisp(){
   if(map==map2 && HintExist[0] == 0){
@@ -1733,6 +1760,7 @@ void HintGet(){
   if(HintExist[0] == 0 && px == Hint_x[0] && py == Hint_y[0] && map==map2 && KeyPress == 0){
       HintExist[0] = 1 ;
       HintCount--;
+      EnemyApperP = 0.8;
       KeyPress = 3;
       map2[2][19]=12;
       map2[3][19]=12;
