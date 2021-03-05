@@ -1,6 +1,9 @@
 /* @pjs preload="hannya.png"; 
    @pjs preload="yonce.png";
    @pjs preload="ha.png";
+   @pjs preload="record.png";
+   @pjs preload="red.png";
+   @pjs preload="smoking.png";
 */
 int[][] map ;
 int[][] map1 = {
@@ -717,6 +720,7 @@ PImage yonce;
 PImage ha;
 PImage record;
 PImage red;
+PImage smoking;
 int KeyPress;
 int ItemCount;
 int Distance_x;
@@ -752,6 +756,7 @@ void setup() {
   ha =loadImage("ha.png");
   record =loadImage("record.png");
   red =loadImage("red.png");
+  smoking =loadImage("smoking.png");
 }
 
 void draw() {
@@ -1617,18 +1622,12 @@ void EnemyMove(){
   }
 }
 void ItemDisp(){
-  if(map==map22 && ItemExist[0] == 0){
-    fill(#5AE55B);
-    rect(Item_x[0] * CHIP, Item_y[0] * CHIP, CHIP, CHIP);
-  }
-  if(map==map28 && ItemExist[1] == 0){
-    fill(#5AE55B);
-    rect(Item_x[1] * CHIP, Item_y[1] * CHIP, CHIP, CHIP);
-  }
-  if(map==map29 && ItemExist[2] == 0){
-    fill(#5AE55B);
-    rect(Item_x[2] * CHIP, Item_y[2] * CHIP, CHIP, CHIP);
-  }
+  if(map==map22 && ItemExist[0] == 0)
+    image(record,Item_x[0] * CHIP, Item_y[0] * CHIP, CHIP, CHIP);
+  if(map==map28 && ItemExist[1] == 0)
+    image(record,Item_x[1] * CHIP, Item_y[1] * CHIP, CHIP, CHIP);
+  if(map==map29 && ItemExist[2] == 0)
+    image(record,Item_x[2] * CHIP, Item_y[2] * CHIP, CHIP, CHIP);
   ItemGet();
 }
 void ItemGet(){
@@ -1678,18 +1677,12 @@ void Item_TextDisp(){
   }
 }
 void SystemDisp(){
-  if(map==map19 && SystemExist[0] == 0){
-    fill(#3E0B76);
-    rect(System_x[0] * CHIP, System_y[0] * CHIP, CHIP, CHIP);
-  }
-  if(map==map22 && SystemExist[1] == 0){
-    fill(#3E0B76);
-    rect(System_x[1] * CHIP, System_y[1] * CHIP, CHIP, CHIP);
-  }
-  if(map==map28 && SystemExist[2] == 0){
-    fill(#3E0B76);
-    rect(System_x[2] * CHIP, System_y[2] * CHIP, CHIP, CHIP);
-  }
+  if(map==map19 && SystemExist[0] == 0)
+    image(red,System_x[0] * CHIP, System_y[0] * CHIP, CHIP, CHIP);
+  if(map==map22 && SystemExist[1] == 0)
+    image(red,System_x[1] * CHIP, System_y[1] * CHIP, CHIP, CHIP);
+  if(map==map28 && SystemExist[2] == 0)
+    image(red,System_x[2] * CHIP, System_y[2] * CHIP, CHIP, CHIP);
   SystemGet();
 }
 void SystemGet(){
@@ -1750,16 +1743,14 @@ void GameStart2_TextDisp(){
 }
 void HintDisp(){
   if(map==map2 && HintExist[0] == 0){
-    fill(#F6FC54);
-    rect(Hint_x[0] * CHIP, Hint_y[0] * CHIP, CHIP, CHIP);
+    image(smoking,Hint_x[0] * CHIP, Hint_y[0] * CHIP, CHIP, CHIP);
   }
   if(map==map27 && HintExist[1] == 0){
-    fill(#F6FC54);
-    rect(Hint_x[1] * CHIP, Hint_y[1] * CHIP, CHIP, CHIP);
+    
+    image(smoking,Hint_x[1] * CHIP, Hint_y[1] * CHIP, CHIP, CHIP);
   }
   if(map==map12 && HintExist[2] == 0){
-    fill(#F6FC54);
-    rect(Hint_x[2] * CHIP, Hint_y[2] * CHIP, CHIP, CHIP);
+    image(smoking,Hint_x[2] * CHIP, Hint_y[2] * CHIP, CHIP, CHIP);
   }
   HintGet();
 }
