@@ -741,7 +741,7 @@ int ph =72;
 float EnemyApperP;
 
 void setup() {
-  size(900,1000);
+  size(900,900);
   PFont font = createFont("Monospaced.italic",50);
   textFont(font);
   GameInit();
@@ -756,7 +756,7 @@ void draw() {
     GameTitle();
   }else if(gseq == 1){
     GamePlay();
-  }else if(gseq == 4){
+  }else if(gseq == 2){
     GameOver();
   }else if(gseq == 3){
     GameClear();
@@ -1662,6 +1662,7 @@ void EnemyHitCheck(){
   }
 }
 void Item_TextDisp(){
+  fill_textDisp();
   if(ItemCount > 0){
       textSize(50);
       fill(255,255,0);
@@ -1721,6 +1722,7 @@ void SystemGet(){
   }
 }
 void System_TextDisp(){
+  fill_textDisp();
   textSize(50);
   fill(255,255,0);
   text("どこかが開く音がした",0,height-50);
@@ -1782,11 +1784,11 @@ void HintGet(){
     }
 }
 void Hint_TextDisp(){
+  fill_textDisp();
   if(HintCount==2){
     textSize(30);
     fill(255,255,0);
-    text("屋敷に閉じ込められたようだ",500,height-60);
-    System_TextDisp();
+    text("屋敷に閉じ込められたようだ　どこかが開く音がした",30,height-60);
   }else if(HintCount==1){
     textSize(30);
     fill(255,255,0);
@@ -1827,4 +1829,8 @@ void Touch(){
         py--;
     }
   }//スマホでできるように開発
+}
+void fill_textDisp(){
+  fill(0);
+  rect(0,height-100,width,100);
 }
