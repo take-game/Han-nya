@@ -880,7 +880,7 @@ void GamePlay(){
   if(EnemyMapChangeTime < millis()-ELagTime){
       EnemyDisp();
       EnemyMove();
-      EnemyHitCheck();
+      //EnemyHitCheck();
     }
   }else {
   MapDisp();
@@ -1535,7 +1535,7 @@ void MapDisp(){
       if(EnemyExist == 1 && map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 1) fill(#AF0917);
       if(EnemyExist == 0 && map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 1) fill(255);
       if(map[i][k] == 1 && OutChange == 0) fill(#401F04);//map[y][x]
-      if(EnemyExist == 1 && map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 0) fill(#154D15);
+      if(map[i][k] != 1 && map[i][k] != 2 && map[i][k] != 3 && OutChange == 0) fill(#154D15);
       if(map[i][k] == 4) fill(#19186C);
       if(map[i][k] == 5) fill(#503206);
         rect(k * CHIP, i * CHIP, CHIP, CHIP);
