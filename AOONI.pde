@@ -1,6 +1,9 @@
 /* @pjs preload="hannya.png"; 
    @pjs preload="yonce.png";
    @pjs preload="ha.png";
+   @pjs preload="record.png";
+   @pjs preload="red.png";
+   @pjs preload="smoking.png";
 */
 int[][] map ;
 int[][] map1 = {
@@ -715,6 +718,9 @@ int mcnt;
 PImage hannya;
 PImage yonce;
 PImage ha;
+PImage record;
+PImage red;
+PImage smoking;
 int KeyPress;
 int ItemCount;
 int Distance_x;
@@ -748,6 +754,9 @@ void setup() {
   hannya =loadImage("hannya.png");
   yonce =loadImage("yonce.png");
   ha =loadImage("ha.png");
+  record =loadImage("record.png");
+  red =loadImage("red.png");
+  smoking =loadImage("smoking.png");
 }
 
 void draw() {
@@ -1613,18 +1622,12 @@ void EnemyMove(){
   }
 }
 void ItemDisp(){
-  if(map==map22 && ItemExist[0] == 0){
-    fill(0,255,0);
-    rect(Item_x[0] * CHIP, Item_y[0] * CHIP, CHIP, CHIP);
-  }
-  if(map==map28 && ItemExist[1] == 0){
-    fill(0,255,0);
-    rect(Item_x[1] * CHIP, Item_y[1] * CHIP, CHIP, CHIP);
-  }
-  if(map==map29 && ItemExist[2] == 0){
-    fill(0,255,0);
-    rect(Item_x[2] * CHIP, Item_y[2] * CHIP, CHIP, CHIP);
-  }
+  if(map==map22 && ItemExist[0] == 0)
+    image(record,Item_x[0] * CHIP, Item_y[0] * CHIP, CHIP, CHIP);
+  if(map==map28 && ItemExist[1] == 0)
+    image(record,Item_x[1] * CHIP, Item_y[1] * CHIP, CHIP, CHIP);
+  if(map==map29 && ItemExist[2] == 0)
+    image(record,Item_x[2] * CHIP, Item_y[2] * CHIP, CHIP, CHIP);
   ItemGet();
 }
 void ItemGet(){
@@ -1674,18 +1677,12 @@ void Item_TextDisp(){
   }
 }
 void SystemDisp(){
-  if(map==map19 && SystemExist[0] == 0){
-    fill(0,255,0);
-    rect(System_x[0] * CHIP, System_y[0] * CHIP, CHIP, CHIP);
-  }
-  if(map==map22 && SystemExist[1] == 0){
-    fill(0,255,0);
-    rect(System_x[1] * CHIP, System_y[1] * CHIP, CHIP, CHIP);
-  }
-  if(map==map28 && SystemExist[2] == 0){
-    fill(0,255,0);
-    rect(System_x[2] * CHIP, System_y[2] * CHIP, CHIP, CHIP);
-  }
+  if(map==map19 && SystemExist[0] == 0)
+    image(red,System_x[0] * CHIP, System_y[0] * CHIP, CHIP, CHIP);
+  if(map==map22 && SystemExist[1] == 0)
+    image(red,System_x[1] * CHIP, System_y[1] * CHIP, CHIP, CHIP);
+  if(map==map28 && SystemExist[2] == 0)
+    image(red,System_x[2] * CHIP, System_y[2] * CHIP, CHIP, CHIP);
   SystemGet();
 }
 void SystemGet(){
@@ -1745,18 +1742,12 @@ void GameStart2_TextDisp(){
   text("その館に訪れたヨンス...",30,height-60);
 }
 void HintDisp(){
-  if(map==map2 && HintExist[0] == 0){
-    fill(#F6FC54);
-    rect(Hint_x[0] * CHIP, Hint_y[0] * CHIP, CHIP, CHIP);
-  }
-  if(map==map27 && HintExist[1] == 0){
-    fill(#F6FC54);
-    rect(Hint_x[1] * CHIP, Hint_y[1] * CHIP, CHIP, CHIP);
-  }
-  if(map==map12 && HintExist[2] == 0){
-    fill(#F6FC54);
-    rect(Hint_x[2] * CHIP, Hint_y[2] * CHIP, CHIP, CHIP);
-  }
+  if(map==map2 && HintExist[0] == 0)
+    image(smoking,Hint_x[0] * CHIP, Hint_y[0] * CHIP, CHIP, CHIP);
+  if(map==map27 && HintExist[1] == 0)
+    image(smoking,Hint_x[1] * CHIP, Hint_y[1] * CHIP, CHIP, CHIP);
+  if(map==map12 && HintExist[2] == 0)
+    image(smoking,Hint_x[2] * CHIP, Hint_y[2] * CHIP, CHIP, CHIP);
   HintGet();
 }
 void HintGet(){
