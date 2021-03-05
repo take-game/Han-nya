@@ -687,7 +687,7 @@ int[][] map31 = {
 {2,2,2,2,2,2,2,1,44,44,44,44,1,2,2,2,2,2,2,2},
 };
 
-int CHIP = 30;
+int CHIP = 45;
 int masu_x = 20;
 int masu_y = 20;
 int px;
@@ -734,14 +734,14 @@ int LagTimePress;
 int HintCount;
 int BreakWall;
 int BreakWallMax = 15;
-int ew =70;
-int eh =94;
-int pw =30;
-int ph =48;
+int ew =105;
+int eh =141;
+int pw =45;
+int ph =72;
 float EnemyApperP;
 
 void setup() {
-  size(600,600);
+  size(900,1000);
   PFont font = createFont("Monospaced.italic",50);
   textFont(font);
   GameInit();
@@ -751,11 +751,12 @@ void setup() {
 }
 
 void draw() {
+  background(0);
   if(gseq == 0){
     GameTitle();
   }else if(gseq == 1){
     GamePlay();
-  }else if(gseq == 2){
+  }else if(gseq == 4){
     GameOver();
   }else if(gseq == 3){
     GameClear();
@@ -768,10 +769,10 @@ void draw() {
       background(#800E89);
       image(ha,GameOverEffect_x,GameOverEffect_y,GameOverEffect_w,GameOverEffect_h);
       GameOverEffect++;
-      GameOverEffect_w+=10;
-      GameOverEffect_h+=13;
-      GameOverEffect_x-=5;
-      GameOverEffect_y-=6;
+      GameOverEffect_w+=15;
+      GameOverEffect_h+=20;
+      GameOverEffect_x-=8;
+      GameOverEffect_y-=9;
     }
     if(GameOverEffect_w > 2 * width)
       gseq = 2;
@@ -1664,11 +1665,11 @@ void Item_TextDisp(){
   if(ItemCount > 0){
       textSize(50);
       fill(255,255,0);
-      text("あと"+ItemCount+"必要だ",0,height-60);
+      text("あと"+ItemCount+"必要だ",30,height-50);
   }else{
       textSize(50);
       fill(255,255,0);
-      text("どこかが開く音がした",0,height-60);
+      text("どこかが開く音がした",30,height-50);
   }
 }
 void SystemDisp(){
@@ -1722,7 +1723,7 @@ void SystemGet(){
 void System_TextDisp(){
   textSize(50);
   fill(255,255,0);
-  text("どこかが開く音がした",0,height-60);
+  text("どこかが開く音がした",0,height-50);
 }
 void PlayTimeDisp(){
   textSize(30);
@@ -1784,16 +1785,16 @@ void Hint_TextDisp(){
   if(HintCount==2){
     textSize(30);
     fill(255,255,0);
-    text("屋敷に閉じ込められたようだ",width/2-150,height/2+100);
+    text("屋敷に閉じ込められたようだ",500,height-60);
     System_TextDisp();
   }else if(HintCount==1){
     textSize(30);
     fill(255,255,0);
-    text("外に出るには鍵が３つ必要だ",width/2-150,height/2+100);
+    text("外に出るには鍵が３つ必要だ",30,height-60);
   }else if(HintCount==0){
     textSize(30);
     fill(255,255,0);
-    text("即死",width/2-150,height/2+100);
+    text("即死",30,height-60);
     EnemyExist =0;
     ex=px;
     ey=py;
