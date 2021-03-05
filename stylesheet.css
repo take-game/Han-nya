@@ -1,5 +1,7 @@
 body {
   font-family: "Avenir Next";
+  zoom :0.8;
+  -moz-transform:scale(0.8);
 }
 
 li {
