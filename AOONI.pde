@@ -880,7 +880,7 @@ void GamePlay(){
   if(EnemyMapChangeTime < millis()-ELagTime){
       EnemyDisp();
       EnemyMove();
-      //EnemyHitCheck();
+      EnemyHitCheck();
     }
   }else {
   MapDisp();
